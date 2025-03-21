@@ -20,14 +20,14 @@ mlflow.set_experiment(experiment_name)
 X_train, X_test, y_train, y_test = pipeline.data_preprocessing()
 
 params = {
-    "solver": "lbfgs",
-    "max_iter": 1000,
-    "multi_class": "auto",
+    "n_estimators": 300,
+    "max_depth": 10,
     "random_state": 8888,
 }
 
+
 # TODO: Use `pipeline.train_logistic_regression` to generate trained model
-trained_model = pipeline.train_logistic_regression(X_train, y_train, params)
+trained_model = pipeline.train_random_forest(X_train, y_train, params)
 # TODO: use `pipeline.evaluation` to evaluate the model
 accuracy =  pipeline.evaluation(trained_model, X_test, y_test)
 
@@ -46,6 +46,6 @@ with mlflow.start_run(run_name=run_name):
         artifact_path=None,  # TODO: Set the artifact path appropriately as a string
         signature=signature,
         input_example=X_train,
-        registered_model_name='log_model',
+        registered_model_name='forest_model',
         # registered_model_name=pipeline.generate_model_name(),  # Optional TODO: Replace with a static name if needed - you will need to use the same static name when updating to a newer version of the model
     )

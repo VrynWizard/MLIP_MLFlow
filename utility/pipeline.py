@@ -28,7 +28,7 @@ def data_preprocessing() -> tuple[np.ndarray]:
     # Load the digits dataset
     X, y = datasets.load_digits(
         return_X_y=True
-    ) 
+    )
 
     # Split the data into training and test sets
     X_train, X_test, y_train, y_test = train_test_split(
